@@ -1,5 +1,6 @@
 import { Injectable, Module } from '@nestjs/common';
 
+import { DatabaseModule } from '../database/database.module';
 import { CoffeeController } from './coffee.controller';
 import { CoffeeService } from './coffee.service';
 
@@ -19,6 +20,15 @@ export class CoffeeBrandFactory {
 }
 
 @Module({
+  imports: [
+    DatabaseModule.register({
+      type: 'postgres',
+      host: 'localhost',
+      password: 'password',
+      port: 5432,
+    }),
+    CoffeeRatingModule,
+  ],
   // providers: [{ provide: CoffeeService, useValue: new MockCoffeeService() }],
   providers: [
     CoffeeService,
