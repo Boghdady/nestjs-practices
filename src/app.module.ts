@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { CoffeesController } from './coffees/coffees.controller';
+
+import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
+import { CoffeeController } from './coffee/coffee.controller';
+import { CoffeeModule } from './coffee/coffee.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController, CoffeesController],
-  providers: [AppService],
+  imports: [CoffeeModule, CoffeeRatingModule],
+  controllers: [CoffeeController],
+  providers: [],
 })
 export class AppModule {}
