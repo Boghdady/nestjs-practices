@@ -3,9 +3,11 @@ import { Module } from '@nestjs/common';
 import { CoffeeController } from './coffee.controller';
 import { CoffeeService } from './coffee.service';
 
+class MockCoffeeService {}
+
 @Module({
-  providers: [CoffeeService],
+  providers: [{ provide: CoffeeService, useValue: new MockCoffeeService() }],
   controllers: [CoffeeController],
-  exports: [CoffeeService],
+  // exports: [CoffeeService],
 })
 export class CoffeeModule {}
